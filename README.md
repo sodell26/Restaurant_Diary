@@ -4,7 +4,7 @@
 **Resturant Diary** is an app where users can create personal reviews of resturants based on overal experience, meals, price, and location. Users will have the ability to create their own account, add resturant locations to a google map using the google maps API, and potentially view other users reviews.
 
 ### Wireframe
-![Image of out wireframe] (https://imgur.com/FdjlM1z)
+![Image of out wireframe](https://imgur.com/FdjlM1z)
 
 ### User Stories:
 * The user will see a login screen.  
