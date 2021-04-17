@@ -57,7 +57,7 @@ export default class NewEntry extends Component {
         event.preventDefault()
 
         //fetch
-        fetch(this.props.baseUrl + '/reviews', {
+        fetch(this.props.baseUrl + '/reviews/new', {
             method: 'POST',
             body: JSON.stringify({name: this.state.name, address: this.state.address,
                 rating: this.state.rating,
@@ -68,7 +68,7 @@ export default class NewEntry extends Component {
                 'Content-Type': 'application/json'
             }
         }).then( res => {
-            return res.join()
+            return res.json()
         }).then( data => {
             this.props.addReview(data)
             this.setState({

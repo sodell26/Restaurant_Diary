@@ -21,7 +21,7 @@ class App extends Component {
 
 // fetch to backend
   getReviews = () => {
-    fetch(baseUrl + '/')
+    fetch(baseUrl + '/reviews')
     .then(res => { return res.json()})
     .then(data => {
       this.setState({
@@ -38,6 +38,10 @@ class App extends Component {
     })
   }
 
+  componentDidMount() {
+    this.getReviews()
+  }
+
   render () {
     console.log(this.state.reviewEntries)
     return(
@@ -49,7 +53,7 @@ class App extends Component {
           <tbody>
             {this.state.reviewEntries.map(entry => {
               return (
-                <tr>
+                <tr key={entry._id}>
                  <td>{entry.name}</td>
                 </tr>
               )
