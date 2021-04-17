@@ -25,7 +25,7 @@ class App extends Component {
     .then(res => { return res.json()})
     .then(data => {
       this.setState({
-        reviews: data
+        reviewEntries: data
       })
     })
   }
@@ -41,6 +41,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getReviews()
+  }
 
   deleteReview = async (id) =>{
     const url = baseUrl + '/reviews/' + id
