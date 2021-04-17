@@ -76,6 +76,7 @@ class App extends Component {
               return (
                 <tr key={entry._id}>
                  <td>{entry.name}</td>
+                 <td onClick={()=>this.deleteReview(entry._id)}>X</td>
                 </tr>
               )
             })}
