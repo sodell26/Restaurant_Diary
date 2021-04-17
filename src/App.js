@@ -37,6 +37,16 @@ class App extends Component {
     })
   }
 
+  render () {
+    console.log(this.state.reviewEntries)
+    return(
+
+      <div>
+        <h1>Resturant Diary</h1>
+      </div>
+
+    )
+  }
 
 }
 
