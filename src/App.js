@@ -44,7 +44,18 @@ class App extends Component {
 
       <div>
         <h1>Restaurant Diary</h1>
-        <NewEntry />
+        <NewEntry baseUrl={baseUrl} addReview={this.addReview}/>
+        <table>
+          <tbody>
+            {this.state.reviewEntries.map(entry => {
+              return (
+                <tr>
+                 <td>{entry.name}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
 
     )

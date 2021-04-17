@@ -7,9 +7,9 @@ export default class NewEntry extends Component {
         this.state = {
             name: '' ,
             address: '' ,
-            rating: null ,
+            rating: 0,
             meal: '' ,
-            cost: null,
+            cost: 0,
             notes: ''
         }
         this.handleChange = this.handleChange.bind(this)
@@ -24,7 +24,7 @@ export default class NewEntry extends Component {
 
     handleAddressChange (event) {
         this.setState({
-            adress: event.target.value
+            address: event.target.value
         })
     }
 
@@ -57,9 +57,13 @@ export default class NewEntry extends Component {
         event.preventDefault()
 
         //fetch
-        fetch(this.props.baseUrl + '/', {
+        fetch(this.props.baseUrl + '/reviews', {
             method: 'POST',
-            body: JSON.stringify({name: this.state.name}),
+            body: JSON.stringify({name: this.state.name, address: this.state.address,
+                rating: this.state.rating,
+                meal: this.state.meal,
+                cost: this.state.cost,
+                notes: this.state.notes}),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -74,7 +78,7 @@ export default class NewEntry extends Component {
     }
 
     render() {
-        console.log(this.state.name)
+        console.log(this.state)
         return(
             <form onSubmit={ (event) => this.handleSubmit(event) }>
 
@@ -82,7 +86,7 @@ export default class NewEntry extends Component {
                 <input type='text' id='name' name="name" onChange={ (event) => this.handleChange(event) } value={this.state.name}></input>
 
                 <label htmlFor='address'>Address:</label>
-                <input type='text' id='address' name="adress"onChange={ (event) => this.handleAddressChange(event) } value={this.state.adress}></input>
+                <input type='text' id='address' name="address"onChange={ (event) => this.handleAddressChange(event) } value={this.state.address}></input>
 
                 <label htmlFor='rating'>Rating:</label>
                 <input type='number' id='rating' name="rating"onChange={ (event) => this.handleRatingChange(event) } value={this.state.rating}></input>
