@@ -5,7 +5,7 @@ console.log(process.env.NODE_ENV)
 let baseUrl = ''
 
 if(process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://localhost:3000'
+  baseUrl = 'http://localhost:3003'
 }else {
   baseUrl = 'heorku url here'
 }
@@ -42,7 +42,7 @@ class App extends Component {
     return(
 
       <div>
-        <h1>Resturant Diary</h1>
+        <h1>Restaurant Diary</h1>
       </div>
 
     )
