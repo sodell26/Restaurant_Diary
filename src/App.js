@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react'
+import NewEntry from './components/NewEntry'
 
 console.log(process.env.NODE_ENV)
 let baseUrl = ''
@@ -43,6 +44,7 @@ class App extends Component {
 
       <div>
         <h1>Restaurant Diary</h1>
+        <NewEntry />
       </div>
 
     )
