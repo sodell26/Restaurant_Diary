@@ -1,13 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
+console.log(process.env.NODE_ENV)
+let baseUrl = ''
 
-      <h1> Testing </h1>
-    </div>
-  );
+if(process.env.NODE_ENV === 'development') {
+  baseUrl = 'http://localhost:3000'
+}else {
+  baseUrl = 'heorku url here'
+}
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      reviewEntries: []
+    }
+  }
+
+// fetch to backend
+  getReviews = () => {
+    fetch(baseUrl + '/')
+    .then(res => { return res.json()})
+    .then(data => {
+      this.setState({
+        reviews: data
+      })
+    })
+  }
+
+  addReview = (newReview) => {
+    const copyReviews = [...this.state.reviewEntries]
+    copyReviews.push(newReview)
+    this.setState({
+      reviewEntries: copyReviews
+    })
+  }
+
+
 }
 
 export default App;
