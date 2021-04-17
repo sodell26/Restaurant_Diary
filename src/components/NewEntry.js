@@ -68,7 +68,7 @@ export default class NewEntry extends Component {
                 'Content-Type': 'application/json'
             }
         }).then( res => {
-            return res.join()
+            return res.json()
         }).then( data => {
             this.props.addReview(data)
             this.setState({

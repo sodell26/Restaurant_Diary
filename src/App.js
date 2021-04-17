@@ -38,6 +38,26 @@ class App extends Component {
     })
   }
 
+  deleteReview = async (id) =>{
+    const url = baseUrl + '/reviews/' + id
+    
+    try{
+      const response = await fetch(url, {method: 'DELETE'})
+
+      const index = this.state.reviewEntries.findIndex(review => review._id === id)
+      const copyReviews = [...this.state.reviewEntries]
+
+      copyReviews.splice(index, 1)
+
+      this.setState({
+        reviewEntries: copyReviews
+      })
+    }
+    catch(error){
+      console.log('error: ', error)
+    }
+  }
+
   render () {
     console.log(this.state.reviewEntries)
     return(
@@ -49,7 +69,7 @@ class App extends Component {
           <tbody>
             {this.state.reviewEntries.map(entry => {
               return (
-                <tr>
+                <tr key={entry._id}>
                  <td>{entry.name}</td>
                 </tr>
               )
