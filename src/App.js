@@ -43,6 +43,12 @@ class App extends Component {
     this.getReviews()
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   deleteReview = async (id) =>{
     const url = baseUrl + '/reviews/' + id
     
@@ -75,7 +81,7 @@ class App extends Component {
             {this.state.reviewEntries.map(entry => {
               return (
                 <tr key={entry._id}>
-                 <td>{entry.name}</td>
+                 <td>{entry.restName}</td>
                  <td onClick={()=>this.deleteReview(entry._id)}>X</td>
                 </tr>
               )
