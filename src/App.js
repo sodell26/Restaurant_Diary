@@ -15,7 +15,15 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      reviewEntries: []
+      reviewEntries: [],
+      modalOpen: false,
+      entryToEdit: {},
+      restName:'',
+      address: '' ,
+      rating: 0,
+      meal: '' ,
+      cost: 0,
+      notes: ''
     }
   }
 
@@ -69,6 +77,56 @@ class App extends Component {
     }
   }
 
+  handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const url = baseUrl + '/reviews/' + this.state.entryToEdit._id
+
+    const response = await fetch ( url, {
+      method: 'PUT', 
+      body: JSON.stringify({
+      restName: e.target.restName.value,
+      address: e.target.address.value,
+      rating: e.target.rating.value,
+      meal: e.target.meal.value,
+      cost: e.target.cost.value,
+      notes: e.target.notes.value
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    })
+    if (response.status === 200) {
+      const updatedEntry = await response.json()
+
+      const findIndex = this.state.reviewEntries.findIndex(entry => entry._id === updatedEntry.data._id)
+
+      const copyEntries = [...this.state.reviewEntries]
+      copyEntries[findIndex] = updatedEntry.data
+
+      this.setState({
+        reviewEntries: copyEntries,
+        modalOpen: false
+      })
+    }
+
+  }
+
+
+  showEditForm = (entry) => {
+    this.setState({
+      modalOpen: true,
+      restName: entry.restName,
+      address: entry.address,
+      rating: entry.rating,
+      meal: entry.meal,
+      cost: entry.cost,
+      notes: entry.notes,
+      entryToEdit: entry
+
+    })
+  }
+
   render () {
     console.log(this.state.reviewEntries)
     return(
@@ -83,11 +141,40 @@ class App extends Component {
                 <tr key={entry._id}>
                  <td>{entry.restName}</td>
                  <td onClick={()=>this.deleteReview(entry._id)}>X</td>
+                 <td onClick={()=>this.showEditForm(entry)}>Edit</td>
                 </tr>
               )
             })}
           </tbody>
         </table>
+
+        <br/>
+        <br/>
+        <br/>
+        {this.state.modalOpen && 
+          <form onSubmit={this.handleSubmit}>
+            <label>Restaurant Name: </label>
+            <input name="restName" value={this.state.restName} onChange={this.handleChange}/><br/>
+
+            <label>Address: </label>
+            <input name="address" value={this.state.address} onChange={this.handleChange}/><br/>
+
+            <label>Rating: </label>
+            <input name="rating" value={this.state.rating} onChange={this.handleChange}/><br/>
+
+            <label>Meal: </label>
+            <input name="meal" value={this.state.meal} onChange={this.handleChange}/><br/>
+
+            <label>Cost: </label>
+            <input name="cost" value={this.state.cost} onChange={this.handleChange}/><br/>
+
+            <label>Notes: </label>
+            <input name="notes" value={this.state.notes} onChange={this.handleChange}/><br/>
+
+            <button>Submit Change</button>
+
+          </form>
+        }
       </div>
 
     )

@@ -29,7 +29,9 @@ export default class NewEntry extends Component {
         //fetch
         fetch(this.props.baseUrl + '/reviews/new', {
             method: 'POST',
-            body: JSON.stringify({restName: this.state.restName, address: this.state.address,
+            body: JSON.stringify({
+                restName: this.state.restName,
+                address: this.state.address,
                 rating: this.state.rating,
                 meal: this.state.meal,
                 cost: this.state.cost,
