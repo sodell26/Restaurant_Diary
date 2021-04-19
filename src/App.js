@@ -77,6 +77,41 @@ class App extends Component {
     }
   }
 
+  handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const url = baseUrl + '/reviews/' + this.state.entryToEdit._id
+
+    const response = await fetch ( url, {
+      method: 'PUT', 
+      body: JSON.stringify({
+      restName: e.target.restName.value,
+      address: e.target.address.value,
+      rating: e.target.rating.value,
+      meal: e.target.meal.value,
+      cost: e.target.cost.value,
+      notes: e.target.notes.value
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    })
+    if (response.status === 200) {
+      const updatedEntry = await response.json()
+
+      const findIndex = this.state.reviewEntries.findIndex(entry => entry._id === updatedEntry.data._id)
+
+      const copyEntries = [...this.state.reviewEntries]
+      copyEntries[findIndex] = updatedEntry.data
+
+      this.setState({
+        reviewEntries: copyEntries,
+        modalOpen: false
+      })
+    }
+
+  }
+
 
   showEditForm = (entry) => {
     this.setState({
@@ -135,6 +170,10 @@ class App extends Component {
 
             <label>Notes: </label>
             <input name="notes" value={this.state.notes} onChange={this.handleChange}/><br/>
+
+            <button>Submit Change</button>
+
+          </form>
         }
       </div>
 
