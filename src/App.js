@@ -15,7 +15,15 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      reviewEntries: []
+      reviewEntries: [],
+      modalOpen: false,
+      entryToEdit: {},
+      restName:'',
+      address: '' ,
+      rating: 0,
+      meal: '' ,
+      cost: 0,
+      notes: ''
     }
   }
 
@@ -69,6 +77,21 @@ class App extends Component {
     }
   }
 
+
+  showEditForm = (entry) => {
+    this.setState({
+      modalOpen: true,
+      restName: entry.restName,
+      address: entry.address,
+      rating: entry.rating,
+      meal: entry.meal,
+      cost: entry.cost,
+      notes: entry.notes,
+      entryToEdit: entry
+
+    })
+  }
+
   render () {
     console.log(this.state.reviewEntries)
     return(
@@ -83,11 +106,36 @@ class App extends Component {
                 <tr key={entry._id}>
                  <td>{entry.restName}</td>
                  <td onClick={()=>this.deleteReview(entry._id)}>X</td>
+                 <td onClick={()=>this.showEditForm(entry)}>Edit</td>
                 </tr>
               )
             })}
           </tbody>
         </table>
+
+        <br/>
+        <br/>
+        <br/>
+        {this.state.modalOpen && 
+          <form onSubmit={this.handleSubmit}>
+            <label>Restaurant Name: </label>
+            <input name="restName" value={this.state.restName} onChange={this.handleChange}/><br/>
+
+            <label>Address: </label>
+            <input name="address" value={this.state.address} onChange={this.handleChange}/><br/>
+
+            <label>Rating: </label>
+            <input name="rating" value={this.state.rating} onChange={this.handleChange}/><br/>
+
+            <label>Meal: </label>
+            <input name="meal" value={this.state.meal} onChange={this.handleChange}/><br/>
+
+            <label>Cost: </label>
+            <input name="cost" value={this.state.cost} onChange={this.handleChange}/><br/>
+
+            <label>Notes: </label>
+            <input name="notes" value={this.state.notes} onChange={this.handleChange}/><br/>
+        }
       </div>
 
     )
