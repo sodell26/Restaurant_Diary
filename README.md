@@ -5,7 +5,7 @@
 
 ### Wireframe
 
-![Resturant Diary Wireframe](https://imgur.com/FdjlM1z)
+![Imgur](https://i.imgur.com/FdjlM1z.png?1)
 
 ### User Stories:
 * The user will see a login screen.  
