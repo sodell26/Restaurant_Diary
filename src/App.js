@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
-import ListGroup from "react-bootstrap/ListGroup"
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from 'react-bootstrap/Button';
 import './App.css';
-import NewEntry from './components/NewEntry'
+import NewEntry from './components/NewEntry';
 
 console.log(process.env.NODE_ENV)
 let baseUrl = ''
@@ -20,6 +20,7 @@ class App extends Component {
     this.state = {
       reviewEntries: [],
       modalOpen: false,
+      modalNewOpen: false,
       entryToEdit: {},
       restName:'',
       address: '' ,
@@ -110,6 +111,7 @@ class App extends Component {
       this.setState({
         reviewEntries: copyEntries,
         modalOpen: false,
+        modalNewOpen: false
       })
     }
 
@@ -119,6 +121,7 @@ class App extends Component {
   showEditForm = (entry) => {
     this.setState({
       modalOpen: true,
+      modalNewOpen: false,
       restName: entry.restName,
       address: entry.address,
       rating: entry.rating,
@@ -130,13 +133,29 @@ class App extends Component {
     })
   }
 
+  showNewForm = (entry) => {
+    this.setState({
+      modalOpen: false,
+      modalNewOpen: !this.state.modalNewOpen,
+      restName: '',
+      address: '',
+      rating: '',
+      meal: '',
+      cost: '',
+      notes: ''
+    })
+  }
+
   render () {
     console.log(this.state.reviewEntries)
     return(
 
       <div>
         <h1>Restaurant Diary</h1>
-        <NewEntry baseUrl={baseUrl} addReview={this.addReview}/>
+        <Button variant="info" onClick={this.showNewForm}>Add New Review</Button>
+        {!this.state.modalNewOpen &&
+          <NewEntry baseUrl={baseUrl} addReview={this.addReview}/>
+        }
         <div class="card-container">
             {this.state.reviewEntries.map(entry => {
               return (

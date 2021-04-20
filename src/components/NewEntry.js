@@ -5,6 +5,7 @@ export default class NewEntry extends Component {
         super(props)
 
         this.state = {
+            modalNewOpen: true,
             restName: '' ,
             address: '' ,
             rating: 0,
@@ -35,7 +36,8 @@ export default class NewEntry extends Component {
                 rating: this.state.rating,
                 meal: this.state.meal,
                 cost: this.state.cost,
-                notes: this.state.notes}),
+                notes: this.state.notes,
+                modalNewOpen: this.state.modalNewOpen}),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -44,6 +46,7 @@ export default class NewEntry extends Component {
         }).then( data => {
             this.props.addReview(data)
             this.setState({
+                modalNewOpen: !this.state.modalNewOpen,    
                 restName: '',
                 address: '',
                 rating: '',
@@ -53,6 +56,7 @@ export default class NewEntry extends Component {
             })
         }).catch(error => console.log({'Error': error}))
     }
+
 
     render() {
         console.log(this.state)
