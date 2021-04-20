@@ -44,7 +44,12 @@ export default class NewEntry extends Component {
         }).then( data => {
             this.props.addReview(data)
             this.setState({
-                restName: ''
+                restName: '',
+                address: '',
+                rating: '',
+                meal: '',
+                cost: '',
+                notes: ''
             })
         }).catch(error => console.log({'Error': error}))
     }

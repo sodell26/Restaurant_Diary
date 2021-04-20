@@ -109,7 +109,7 @@ class App extends Component {
 
       this.setState({
         reviewEntries: copyEntries,
-        modalOpen: false
+        modalOpen: false,
       })
     }
 
