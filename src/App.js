@@ -1,5 +1,8 @@
-import './App.css';
 import React, { Component } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
+import ListGroup from "react-bootstrap/ListGroup"
+import './App.css';
 import NewEntry from './components/NewEntry'
 
 console.log(process.env.NODE_ENV)
@@ -134,19 +137,29 @@ class App extends Component {
       <div>
         <h1>Restaurant Diary</h1>
         <NewEntry baseUrl={baseUrl} addReview={this.addReview}/>
-        <table>
-          <tbody>
+        <div class="card-container">
             {this.state.reviewEntries.map(entry => {
               return (
-                <tr key={entry._id}>
-                 <td>{entry.restName}</td>
-                 <td onClick={()=>this.deleteReview(entry._id)}>X</td>
-                 <td onClick={()=>this.showEditForm(entry)}>Edit</td>
-                </tr>
+                <Card style={{ width: '18rem'}} key={entry._id}>
+                    <Card.Body>
+                   <Card.Title>{entry.restName}</Card.Title>
+                   <Card.Text>{entry.notes}</Card.Text>
+                  </Card.Body>
+{                  <ListGroup className="list-group-flush">
+                    <ListGroup.Item>{entry.rating}</ListGroup.Item>
+                    <ListGroup.Item>{entry.address}</ListGroup.Item>
+                    <ListGroup.Item>{entry.meal}</ListGroup.Item>
+                    <ListGroup.Item>{entry.cost}</ListGroup.Item>
+                  </ListGroup>}
+                  <Card.Body>
+                   <Card.Link onClick={()=>this.deleteReview(entry._id)}>X</Card.Link>
+                   <Card.Link onClick={()=>this.showEditForm(entry)}>Edit</Card.Link>
+                  </Card.Body>
+                </Card>
+
               )
             })}
-          </tbody>
-        </table>
+        </div>
 
         <br/>
         <br/>
