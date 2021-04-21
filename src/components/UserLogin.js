@@ -13,23 +13,15 @@ export default class UserLogin extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    //fetch to backend
-      //add to every fetch request?
-      getUserLogin = () =>{
-        fetch(this.props.baseUrl  + '/account/login', {
-            method: 'GET', 
-            mode: 'cors', 
-            credentials: 'include',
-          }) 
-      }
 
-      handleSubmit(event) {
+
+      handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
       }
 
-      handleChange(event) {
+      handleSubmit(event) {
         event.preventDefault()
 
         fetch(this.props.baseUrl + '/new', {
