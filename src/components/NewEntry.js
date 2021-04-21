@@ -5,7 +5,6 @@ export default class NewEntry extends Component {
         super(props)
 
         this.state = {
-            modalNewOpen: true,
             restName: '' ,
             address: '' ,
             rating: 0,
@@ -45,8 +44,7 @@ export default class NewEntry extends Component {
             return res.json()
         }).then( data => {
             this.props.addReview(data)
-            this.setState({
-                modalNewOpen: !this.state.modalNewOpen,    
+            this.setState({    
                 restName: '',
                 address: '',
                 rating: '',
@@ -58,9 +56,12 @@ export default class NewEntry extends Component {
     }
 
 
+
     render() {
         console.log(this.state)
+
         return(
+            <>
             <form onSubmit={ (event) => this.handleSubmit(event) }>
 
                 <label htmlFor='restName'>Restaurant Name:</label>
@@ -84,6 +85,8 @@ export default class NewEntry extends Component {
                 <input type='submit' value='Add Review'></input>
 
             </form>
+            <button onClick={this.props.onClose}>Close</button>
+            </>
         )
     }
 

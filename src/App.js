@@ -146,15 +146,21 @@ class App extends Component {
     })
   }
 
+  onClose = e => {
+        this.setState({
+            modalNewOpen: false
+        });
+    }
+
   render () {
     console.log(this.state.reviewEntries)
     return(
 
       <div>
         <h1>Restaurant Diary</h1>
-        <Button variant="info" onClick={this.showNewForm}>Add New Review</Button>
-        {!this.state.modalNewOpen &&
-          <NewEntry baseUrl={baseUrl} addReview={this.addReview}/>
+        <Button variant="info" onClick={e => {this.showNewForm(e)}}>Add New Review</Button>
+        {this.state.modalNewOpen &&
+          <NewEntry baseUrl={baseUrl} addReview={this.addReview} onClose={this.onClose}/>
         }
         <div class="card-container">
             {this.state.reviewEntries.map(entry => {
