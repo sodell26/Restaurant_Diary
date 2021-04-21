@@ -4,6 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from 'react-bootstrap/Button';
 import './App.css';
 import NewEntry from './components/NewEntry';
+import UserLogin from './components/UserLogin'
 
 console.log(process.env.NODE_ENV)
 let baseUrl = ''
@@ -163,19 +164,19 @@ class App extends Component {
     //fetch to backend
       //add to every fetch request?
       //move to app.js
-  getUserLogin = () =>{
-    fetch(baseUrl  + '/account/login', {
-        method: 'POST', 
-        mode: 'cors', 
-        credentials: 'include',
-      }).then( res => {
-        if(res.status===200){
-          this.setState ({
-            loggedIn: true
-          })
-        }
-      })
-  }
+  // getUserLogin = () =>{
+  //   fetch(baseUrl  + '/account/login', {
+  //       method: 'POST', 
+  //       mode: 'cors', 
+  //       credentials: 'include',
+  //     }).then( res => {
+  //       if(res.status===200){
+  //         this.setState ({
+  //           loggedIn: true
+  //         })
+  //       }
+  //     })
+  // }
 
   loggingUser = async (e) => {
     e.preventDefault()
@@ -196,11 +197,33 @@ class App extends Component {
 
       if (response.status === 200) {
         this.getReviews()
+        this.setState({
+          loggedIn: true
+        })
       }
     }
     catch (err) {
       console.log('Error => ', err);
     }    
+  }
+
+  register = async (e) => {
+    e.preventDefault()
+    const url = baseUrl + '/account/signup'
+
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.targe.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (response.status === 200) {
+      this.getReviews()
+    } 
   }
 
   render () {
@@ -209,6 +232,7 @@ class App extends Component {
 
       <>
         <h1>Restaurant Diary</h1>
+        <UserLogin loggingUser={this.loggingUser} register={this.register}/>
         {this.state.loggedIn && 
           <div>
             <Button variant="info" onClick={e => this.showNewForm(e)}>Add New Review</Button>

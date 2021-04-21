@@ -39,7 +39,8 @@ export default class NewEntry extends Component {
                 modalNewOpen: this.state.modalNewOpen}),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: "include"
         }).then( res => {
             return res.json()
         }).then( data => {

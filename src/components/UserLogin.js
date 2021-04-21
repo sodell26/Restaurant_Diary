@@ -1,51 +1,33 @@
 import React, { Component } from 'react' 
 
-export default class UserLogin extends Component {
-
-    constructor(props){
-        super(props)
-
-        this.state = {
-            username: '' ,
-            password: ''
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-
-
-      handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-      }
-
-      handleSubmit(event) {
-        event.preventDefault()
-
-        fetch(this.props.baseUrl + '/new', {
-            method: 'GET', 
-            mode: 'cors', 
-            credentials: 'include',
-          })
-      }
-
-      render() {
-          console.log(this.state)
+export default function UserLogin (props) {
 
           return(
-              <form>
-                  <label>Username:</label>
-                  <input type='text' id='username' value={this.state.username}></input>
+            <>
+              <form onSubmit={props.loggingUser}>
+                  <strong>Login</strong>
+                  <label htmlFor="username">Username:</label>
+                  <input type='text' id='username' name='username'></input>
 
-                  <label>Password:</label>
-                  <input type='text' id='password' value={this.state.password}></input>
+                  <label htmlFor="password">Password:</label>
+                  <input type='text' id="password" name='password'></input>
 
-                  <input type='submit' value='Create Account'></input>
+                  <input type='submit' value='Login'></input>
               </form>
+
+              OR
+
+              <form onSubmit={props.register}>
+                <strong>Register</strong>
+                <label htmlFor="username">Username: </label>
+                <input type="text" id="username" name="username"></input>
+
+                <label htmlFor="password">Password: </label>
+                <input type="text" id="password" name="password"></input>
+
+                <input type="submit" value="Sign Up"></input>
+
+              </form>
+            </>
           )
       }
-
-
-}
