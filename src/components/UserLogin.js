@@ -1,6 +1,6 @@
 import React, { Component } from 'react' 
 
-export default class NewEntry extends Component {
+export default class UserLogin extends Component {
 
     constructor(props){
         super(props)
@@ -16,7 +16,7 @@ export default class NewEntry extends Component {
     //fetch to backend
       //add to every fetch request?
       getUserLogin = () =>{
-        fetch(myServerUrl + route, {
+        fetch(this.props.baseUrl  + '/account/login', {
             method: 'GET', 
             mode: 'cors', 
             credentials: 'include',

@@ -33,9 +33,16 @@ class App extends Component {
 
 // fetch to backend
   getReviews = () => {
-    fetch(baseUrl + '/reviews')
-    .then(res => { return res.json()})
-    .then(data => {
+    fetch(baseUrl + '/reviews',{
+      credentials: "include"
+    })
+    .then(res => { 
+      if (res.status === 200) {
+        return res.json()
+      } else {
+        return []
+      }
+    }).then(data => {
       this.setState({
         reviewEntries: data
       })
@@ -151,6 +158,33 @@ class App extends Component {
             modalNewOpen: false
         });
     }
+
+
+  loggingUser = async (e) => {
+    e.preventDefault()
+    const url = baseUrl + '/account/login'
+    const loginBody = {
+      username: e.target.username.value,
+      password: e.target.password.value
+    }
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(loginBody),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: "include" 
+      })
+
+      if (response.status === 200) {
+        this.getReviews()
+      }
+    }
+    catch (err) {
+      console.log('Error => ', err);
+    }    
+  }
 
   render () {
     console.log(this.state.reviewEntries)
