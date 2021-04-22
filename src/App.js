@@ -211,7 +211,7 @@ class App extends Component {
     })
     if (response.status === 200) {
       this.setState({
-        loggedIn: false
+        loggedIn: true
       })
     } 
   }
@@ -243,7 +243,7 @@ class App extends Component {
     return(
 
       <>
-        <NavBar loggedIn={this.state.loggedIn} logOut={this.logOut} register={this.register}/>
+        <NavBar loggedIn={this.state.loggedIn} loggingUser={this.loggingUser}logOut={this.logOut} register={this.register}/>
         {this.state.loggedIn && 
           <div>
             <Button variant="info" onClick={e => this.showNewForm(e)}>Add New Review</Button>
@@ -302,9 +302,10 @@ class App extends Component {
 
             </form>
           }
+          <Map />
         </div>
       }
-      <Map />
+      
       </>
 
     )

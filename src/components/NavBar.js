@@ -36,7 +36,7 @@ export default class NavBar extends Component {
 				<ul>
 					<li> <Button onClick= {this.showLogin}>Login</Button></li>
 					{this.state.loginShow &&
-						<UserLogin />
+						<UserLogin loggingUser={this.props.loggingUser}/>
 					}
 					<li><Button onClick={this.showSignUp}>Sign Up</Button></li>
 					{this.state.signupShow &&
