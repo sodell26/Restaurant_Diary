@@ -223,6 +223,9 @@ class App extends Component {
     })
     if (response.status === 200) {
       this.getReviews()
+      this.setState({
+        loggedIn: true
+      })
     } 
   }
 
