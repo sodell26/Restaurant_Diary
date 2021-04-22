@@ -4,7 +4,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from 'react-bootstrap/Button';
 import './App.css';
 import NewEntry from './components/NewEntry';
-import UserLogin from './components/UserLogin'
 import NavBar from './components/NavBar'
 
 //mapbox
@@ -43,7 +42,7 @@ class App extends Component {
       credentials: "include"
     })
     .then(res => { 
-      if (res.status === 200) {
+      if (res.status === 200 || res.status=== 201) {
         return res.json()
       } else {
         return []
@@ -184,6 +183,7 @@ class App extends Component {
       })
 
       if (response.status === 200) {
+
         this.getReviews()
         this.setState({
           loggedIn: true
@@ -209,10 +209,10 @@ class App extends Component {
         'Content-Type': 'application/json'
       }
     })
-    if (response.status === 200) {
-      this.setState({
-        loggedIn: true
-      })
+    if (response.status === 201) {
+      console.log('register hit')
+
+      this.loggingUser(e)
     } 
   }
 
@@ -231,7 +231,7 @@ class App extends Component {
       }
     })
     if (response.status === 200) {
-      this.getReviews()
+      // this.getReviews()
       this.setState({
         loggedIn: false
       })
