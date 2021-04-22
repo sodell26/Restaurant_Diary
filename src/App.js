@@ -161,22 +161,6 @@ class App extends Component {
         });
     }
 
-    //fetch to backend
-      //add to every fetch request?
-      //move to app.js
-  // getUserLogin = () =>{
-  //   fetch(baseUrl  + '/account/login', {
-  //       method: 'POST', 
-  //       mode: 'cors', 
-  //       credentials: 'include',
-  //     }).then( res => {
-  //       if(res.status===200){
-  //         this.setState ({
-  //           loggedIn: true
-  //         })
-  //       }
-  //     })
-  // }
 
   loggingUser = async (e) => {
     e.preventDefault()
@@ -264,7 +248,7 @@ class App extends Component {
 
                   )
                 })}
-            }
+            
           </div>
 
           <br/>
