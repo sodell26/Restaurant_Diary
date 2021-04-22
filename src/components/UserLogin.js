@@ -14,20 +14,6 @@ export default function UserLogin (props) {
 
                   <input type='submit' value='Login'></input>
               </form>
-
-              OR
-
-              <form onSubmit={props.register}>
-                <strong>Register</strong>
-                <label htmlFor="username">Username: </label>
-                <input type="text" id="username" name="username"></input>
-
-                <label htmlFor="password">Password: </label>
-                <input type="password" id="password" name="password"></input>
-
-                <input type="submit" value="Sign Up"></input>
-
-              </form>
             </>
           )
       }

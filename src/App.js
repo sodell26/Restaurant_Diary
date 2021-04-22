@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import './App.css';
 import NewEntry from './components/NewEntry';
 import UserLogin from './components/UserLogin'
+import NavBar from './components/NavBar'
 
 //mapbox
 import Map from './Map'
@@ -242,9 +243,7 @@ class App extends Component {
     return(
 
       <>
-        <h1>Restaurant Diary</h1>
-        <UserLogin loggingUser={this.loggingUser} register={this.register}/>
-        <button onClick={this.logOut}>Log Out</button>
+        <NavBar loggedIn={this.state.loggedIn} logOut={this.logOut} register={this.register}/>
         {this.state.loggedIn && 
           <div>
             <Button variant="info" onClick={e => this.showNewForm(e)}>Add New Review</Button>
