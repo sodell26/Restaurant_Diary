@@ -1,6 +1,8 @@
 import React, { Component } from 'react' 
 
-export default function UserSignup (props) {
+export default class UserSignup extends Component(props) {
+
+
 
     return(
         <>

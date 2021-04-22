@@ -6,6 +6,9 @@ import './App.css';
 import NewEntry from './components/NewEntry';
 import UserLogin from './components/UserLogin'
 
+//mapbox
+import Map from './Map'
+
 console.log(process.env.NODE_ENV)
 let baseUrl = ''
 
@@ -267,7 +270,6 @@ class App extends Component {
                        <Card.Link onClick={()=>this.showEditForm(entry)}>Edit</Card.Link>
                       </Card.Body>
                     </Card>
-
                   )
                 })}
 
@@ -303,6 +305,7 @@ class App extends Component {
           }
         </div>
       }
+      <Map />
       </>
 
     )
