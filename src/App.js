@@ -206,9 +206,30 @@ class App extends Component {
       }
     })
     if (response.status === 200) {
+      this.setState({
+        loggedIn: false
+      })
+    } 
+  }
+
+  logOut = async (e) => {
+    e.preventDefault()
+    const url = baseUrl + '/account/logout'
+
+    const response = await fetch(url, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        username: '',
+        password: ''
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (response.status === 200) {
       this.getReviews()
       this.setState({
-        loggedIn: true
+        loggedIn: false
       })
     } 
   }
@@ -220,6 +241,7 @@ class App extends Component {
       <>
         <h1>Restaurant Diary</h1>
         <UserLogin loggingUser={this.loggingUser} register={this.register}/>
+        <button onClick={this.logOut}>Log Out</button>
         {this.state.loggedIn && 
           <div>
             <Button variant="info" onClick={e => this.showNewForm(e)}>Add New Review</Button>
