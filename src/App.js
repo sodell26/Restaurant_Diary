@@ -215,7 +215,7 @@ class App extends Component {
       method: 'POST',
       body: JSON.stringify({
         username: e.target.username.value,
-        password: e.targe.password.value
+        password: e.target.password.value
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -223,6 +223,9 @@ class App extends Component {
     })
     if (response.status === 200) {
       this.getReviews()
+      this.setState({
+        loggedIn: true
+      })
     } 
   }
 
