@@ -5,13 +5,15 @@ import './Map.css'
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic2FtYW50aGF0dWNrZXIiLCJhIjoiY2tuc2JhbGdiMG9laTJvcGg5dTl1Z2FwcSJ9.MoGQ7EJJq51S2o8tcKL-3Q'
 
+
+
 const Map = () => {
   const mapContainerRef = useRef(null)
 
   // set a defult lng and lat
-  const [lng, setLng] = useState(5)
-  const [lat, setLat] = useState(34)
-  const [zoom, setZoom] = useState(1.5)
+  const [lng, setLng] = useState(-104)
+  const [lat, setLat] = useState(39)
+  const [zoom, setZoom] = useState(3.5)
 
   // Initialize map when component mounts
   useEffect(() => {
@@ -20,7 +22,7 @@ const Map = () => {
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
       zoom: zoom
-    });
+    })
 
     // (+/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), 'top-right')
@@ -31,9 +33,8 @@ const Map = () => {
       setZoom(map.getZoom().toFixed(2))
     });
 
-    // Clean up on unmount
     return () => map.remove()
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) 
 
   return (
     <div>
@@ -44,7 +45,8 @@ const Map = () => {
       </div>
       <div className='map-container' ref={mapContainerRef} />
     </div>
-  );
-};
+  )
+
+}
 
 export default Map

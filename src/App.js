@@ -6,6 +6,8 @@ import './App.css';
 import NewEntry from './components/NewEntry';
 import NavBar from './components/NavBar'
 
+// import RatingPage from './components/StarRating'
+
 //mapbox
 import Map from './Map'
 
@@ -32,7 +34,8 @@ class App extends Component {
       meal: '' ,
       cost: 0,
       notes: '',
-      loggedIn: false
+      loggedIn: false ,
+      showLanding: true
     }
   }
 
@@ -187,8 +190,8 @@ class App extends Component {
 
         this.getReviews()
         this.setState({
-          loggedIn: true
-      //add set state of showLanding to false
+          loggedIn: true ,
+          showLanding: false
         })
         // loginBody = {
         //   username: '',
@@ -227,10 +230,9 @@ class App extends Component {
      else if (response.status === 201) {
         console.log('register hit')
 
-        this.loggingUser(e)
-
-      } 
-    }
+      this.loggingUser(e)
+      this.setState()
+    } 
   }
 
   logOut = async (e) => {
@@ -250,9 +252,8 @@ class App extends Component {
     if (response.status === 200) {
       // this.getReviews()
       this.setState({
-        loggedIn: false
-      //add set state of showLanding to true
-
+        loggedIn: false ,
+        showLanding: true
       })
     } 
   }
@@ -261,6 +262,12 @@ class App extends Component {
     return(
       <div>
         <NavBar loggedIn={this.state.loggedIn} loggingUser={this.loggingUser}logOut={this.logOut} register={this.register}/>
+
+      {this.state.showLanding &&
+        <div className='landingPage'>
+          <h3 className='landingPageh3'>People who love to eat <br></br> are always the best people <br></br> <small>-Julia Child</small></h3>
+          </div>
+      }
 
         {this.state.loggedIn && 
           <div class="flexbox-container">
@@ -318,7 +325,7 @@ class App extends Component {
                 <input type="submit" value="Submit Change"></input>
 
               </form>
-            </div>
+          </div>
           }
           </div>
           <div>
