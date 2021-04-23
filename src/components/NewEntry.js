@@ -81,7 +81,7 @@ export default class NewEntry extends Component {
                 <input type='number' id='cost' name="cost"onChange={ (event) => this.handleChange(event) } value={this.state.cost}></input>
 
                 <label htmlFor='notes'>Notes:</label>
-                <input type='text' id='notes' name="notes"onChange={ (event) => this.handleChange(event) } value={this.state.notes}></input>
+                <input type='textarea' id='notes' name="notes"onChange={ (event) => this.handleChange(event) } value={this.state.notes}></input>
 
                 <input type='submit' value='Add Review'></input>
 

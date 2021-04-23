@@ -8,13 +8,13 @@ export default function UserLogin (props) {
               <form onSubmit={props.loggingUser}>
 
                   <label htmlFor="username">Username:</label>
-                  <input type='text' id='username' name='username'></input>
+                  <input className="inputField" type='text' id='username' name='username'></input>
 
-                  <label htmlFor="password">Password:</label>
-                  <input type='password' id="password" name='password'></input>
+                  <label className="inputField" htmlFor="password">Password:</label>
+                  <input className="inputField" type='password' id="password" name='password'></input>
 
 
-                  <Button variant="light" type='submit'>Login</Button>
+                  <Button className="login-btn" variant="light" type='submit'>Login</Button>
               </form>
             </>
           )

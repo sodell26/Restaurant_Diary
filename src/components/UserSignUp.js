@@ -7,15 +7,15 @@ export default function UserSignup(props) {
       <div>
         <form onSubmit={props.register}>
           <label htmlFor="username">Username: </label>
-          <input type="text" id="username" name="username"></input>
+          <input className="inputField" type="text" id="username" name="username"></input>
 
-          <label htmlFor="password">Password: </label>
-          <input type="password" id="password" name="password"></input>
+          <label className="inputField" htmlFor="password">Password: </label>
+          <input className="inputField" type="password" id="password" name="password"></input>
 
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-                  <input type='password' id="confirmPassword" name='confirmPassword'></input>
+          <label className="inputField" htmlFor="confirmPassword">Confirm Password:</label>
+                  <input className="inputField" type='password' id="confirmPassword" name='confirmPassword'></input>
 
-          <Button variant="light" type="submit" value="Sign Up">Create Account</Button>
+          <Button className="create-btn" variant="light" type="submit" value="Sign Up">Create Account</Button>
 
         </form>
 

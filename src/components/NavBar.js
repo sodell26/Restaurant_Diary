@@ -9,25 +9,8 @@ export default class NavBar extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state={
-			loginShow: false,
-			signupShow: false
-		}
 	}
-
-	showLogin = (entry) => {
-		this.setState({
-			loginShow: !this.state.loginShow,
-			signupShow: false
-		})
-	}
-
-	showSignUp = (entry) => {
-		this.setState({
-			loginShow: false,
-			signupShow: !this.state.signupShow
-		})
-	}
+	
 
 	render() {
 		return(
@@ -35,12 +18,12 @@ export default class NavBar extends Component {
 			<Navbar bg='info' variant="dark">
 				<Navbar.Brand>Restaurant Diary</Navbar.Brand>
 				<Nav>
-					<Nav.Link onClick= {this.showLogin}>Login</Nav.Link>
-					{this.state.loginShow &&
+					<Nav.Link onClick= {this.props.showLogin}>Login</Nav.Link>
+					{this.props.loginShow &&
 						<UserLogin loggingUser={this.props.loggingUser}/>
 					}
-					<Nav.Link onClick={this.showSignUp}>Sign Up</Nav.Link>
-					{this.state.signupShow &&
+					<Nav.Link onClick={this.props.showSignUp}>Sign Up</Nav.Link>
+					{this.props.signupShow &&
 						<UserSignUp register={this.props.register}/>
 					}
 					{this.props.loggedIn &&

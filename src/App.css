@@ -2,6 +2,23 @@
   text-align: center;
 }
 
+.loggedIn-Container{
+  background-image: url('https://cdn.pixabay.com/photo/2018/07/14/15/27/cafe-3537801_1280.jpg');
+  background-size: cover;
+  width: auto;
+  height: 900px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.inputField{
+  margin-left: 5px;
+}
+
+.reviews-area{
+  margin-left: 15%;
+}
+
 .flexbox-container {
   display: flex;
   flex-direction: row;
@@ -15,6 +32,27 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.scroll-container{
+  height: 365px;
+  overflow-y: scroll;
+}
+.add-btn {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  background-color: #EDD69D;
+  color:#285D69;
+
+}
+
+.create-btn {
+  margin-left: 30%
+}
+
+.login-btn{
+  margin-left: 50%;
+}
+
 
 .landingPageh3{
   font-size: 55px;
