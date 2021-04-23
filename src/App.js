@@ -216,39 +216,46 @@ class App extends Component {
   register = async (e) => {
     e.preventDefault()
     const url = baseUrl + '/account/signup'
+    console.log('register function', e.target.password.value, e.target.confirmPassword.value)
 
     if (e.target.password.value !== e.target.confirmPassword.value){
       alert('passwords do not match')
       } 
     else {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-          username: e.target.username.value,
-          password: e.target.password.value,
-          confirmPassword: e.target.confirmPassword.value
-        }),
-        headers: {
-          'Content-Type': 'application/json'
+      try {
+        console.log('before request')
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({
+            username: e.target.username.value,
+            password: e.target.password.value,
+            confirmPassword: e.target.confirmPassword.value
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        console.log('after request')
+        if (response.status === 401) {
+            console.log('user already exists')
+            alert("User Already Exists")
         }
-      })
-      
-      if (response.status === 409) {
-          console.log('user already exists')
-          alert("User Already Exists")
-      }
-     else if (response.status === 201) {
-        console.log('register hit')
+       else if (response.status === 201) {
+          console.log('register hit')
 
-      this.loggingUser(e)
-      this.setState({
-        showLanding: false,
-        loginShow: false,
-        signupShow: false
-      })
-    } 
+        this.loggingUser(e)
+        this.setState({
+          showLanding: false,
+          loginShow: false,
+          signupShow: false
+        })
+      } 
+    } catch(error) {
+      console.log(error)
+    }
   }
 }
+
 
   logOut = async (e) => {
     e.preventDefault()
