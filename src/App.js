@@ -169,7 +169,7 @@ class App extends Component {
   loggingUser = async (e) => {
     e.preventDefault()
     const url = baseUrl + '/account/login'
-    const loginBody = {
+    let loginBody = {
       username: e.target.username.value,
       password: e.target.password.value
     }
@@ -189,8 +189,11 @@ class App extends Component {
         this.setState({
           loggedIn: true
       //add set state of showLanding to false
-
         })
+        // loginBody = {
+        //   username: '',
+        //   password: ''
+        // }
       }
     }
     catch (err) {
@@ -212,7 +215,9 @@ class App extends Component {
         'Content-Type': 'application/json'
       }
     })
-    if (response.status === 201) {
+    // if (response.status === 409) {
+    //     alert("User Already Exists")
+   if (response.status === 201) {
       console.log('register hit')
 
       this.loggingUser(e)
@@ -265,10 +270,10 @@ class App extends Component {
                        <Card.Text>{entry.notes}</Card.Text>
                       </Card.Body>
                       <ListGroup className="list-group-flush">
-                        <ListGroup.Item>{entry.rating}</ListGroup.Item>
+                        <ListGroup.Item>Rating:{entry.rating}</ListGroup.Item>
                         <ListGroup.Item>{entry.address}</ListGroup.Item>
-                        <ListGroup.Item>{entry.meal}</ListGroup.Item>
-                        <ListGroup.Item>{entry.cost}</ListGroup.Item>
+                        <ListGroup.Item>Meal:{entry.meal}</ListGroup.Item>
+                        <ListGroup.Item>${entry.cost}</ListGroup.Item>
                       </ListGroup>
                       <Card.Body>
                        <Card.Link onClick={()=>this.deleteReview(entry._id)}>X</Card.Link>
