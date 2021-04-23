@@ -37,7 +37,8 @@ class App extends Component {
       loggedIn: false ,
       showLanding: true,
       loginShow: false,
-      signupShow: false
+      signupShow: false,
+      usersName: ''
   }
     
   }
@@ -196,7 +197,8 @@ class App extends Component {
           loggedIn: true ,
           showLanding: false,
           loginShow: false,
-          signupShow: false
+          signupShow: false,
+          usersName: e.target.username.value
         })
         // loginBody = {
         //   username: '',
@@ -266,7 +268,8 @@ class App extends Component {
       // this.getReviews()
       this.setState({
         loggedIn: false ,
-        showLanding: true
+        showLanding: true,
+        usersName: ''
       })
     } 
   }
@@ -288,7 +291,7 @@ class App extends Component {
   render () {
     return(
       <div>
-        <NavBar loggedIn={this.state.loggedIn} loggingUser={this.loggingUser}logOut={this.logOut} register={this.register} showLogin={this.showLogin} loginShow={this.state.loginShow} showSignUp={this.showSignUp} signupShow={this.state.signupShow}/>
+        <NavBar loggedIn={this.state.loggedIn} loggingUser={this.loggingUser}logOut={this.logOut} register={this.register} showLogin={this.showLogin} loginShow={this.state.loginShow} showSignUp={this.showSignUp} signupShow={this.state.signupShow} usersName={this.state.usersName}/>
 
       {this.state.showLanding &&
         <div className='landingPage'>
@@ -333,7 +336,7 @@ class App extends Component {
           <br/>
           <br/>
           {this.state.modalOpen && 
-            <div>
+            <div className= "edit-form">
               <form onSubmit={this.handleSubmit}>
                 <label>Restaurant Name: </label>
                 <input name="restName" value={this.state.restName} onChange={this.handleChange}/><br/>

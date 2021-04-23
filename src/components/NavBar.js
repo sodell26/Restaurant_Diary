@@ -15,7 +15,7 @@ export default class NavBar extends Component {
 	render() {
 		return(
 		
-			<Navbar bg='info' variant="dark">
+			<Navbar sticky="top" bg='info' variant="dark">
 				<Navbar.Brand>Restaurant Diary</Navbar.Brand>
 				<Nav>
 					<Nav.Link onClick= {this.props.showLogin}>Login</Nav.Link>
@@ -29,6 +29,9 @@ export default class NavBar extends Component {
 					{this.props.loggedIn &&
 						<Button onClick={this.props.logOut}>Log Out</Button>
 					}
+					<Nav className="float-sm-right">
+						<Navbar.Brand>{this.props.usersName}</Navbar.Brand>
+					</Nav>
 				</Nav>	
 			</Navbar>
 			

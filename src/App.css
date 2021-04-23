@@ -19,6 +19,10 @@
   margin-left: 15%;
 }
 
+.edit-form{
+  background: rgba(145, 227, 230,.7);
+}
+
 .flexbox-container {
   display: flex;
   flex-direction: row;
