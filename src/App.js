@@ -110,7 +110,8 @@ class App extends Component {
       }),
       headers: {
         'Content-Type' : 'application/json'
-      }
+      },
+      credentials: 'include'
     })
     if (response.status === 200) {
       const updatedEntry = await response.json()
@@ -187,6 +188,8 @@ class App extends Component {
         this.getReviews()
         this.setState({
           loggedIn: true
+      //add set state of showLanding to false
+
         })
       }
     }
@@ -213,6 +216,7 @@ class App extends Component {
       console.log('register hit')
 
       this.loggingUser(e)
+      //add set state of showLanding to false
     } 
   }
 
@@ -234,15 +238,17 @@ class App extends Component {
       // this.getReviews()
       this.setState({
         loggedIn: false
+      //add set state of showLanding to true
+
       })
     } 
   }
 
   render () {
-    console.log(this.state.reviewEntries)
     return(
 
       <>
+
         <NavBar loggedIn={this.state.loggedIn} loggingUser={this.loggingUser}logOut={this.logOut} register={this.register}/>
         {this.state.loggedIn && 
           <div>
@@ -279,28 +285,30 @@ class App extends Component {
           <br/>
           <br/>
           {this.state.modalOpen && 
-            <form onSubmit={this.handleSubmit}>
-              <label>Restaurant Name: </label>
-              <input name="restName" value={this.state.restName} onChange={this.handleChange}/><br/>
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <label>Restaurant Name: </label>
+                <input name="restName" value={this.state.restName} onChange={this.handleChange}/><br/>
 
-              <label>Address: </label>
-              <input name="address" value={this.state.address} onChange={this.handleChange}/><br/>
+                <label>Address: </label>
+                <input name="address" value={this.state.address} onChange={this.handleChange}/><br/>
 
-              <label>Rating: </label>
-              <input name="rating" value={this.state.rating} onChange={this.handleChange}/><br/>
+                <label>Rating: </label>
+                <input name="rating" value={this.state.rating} onChange={this.handleChange}/><br/>
 
-              <label>Meal: </label>
-              <input name="meal" value={this.state.meal} onChange={this.handleChange}/><br/>
+                <label>Meal: </label>
+                <input name="meal" value={this.state.meal} onChange={this.handleChange}/><br/>
 
-              <label>Cost: </label>
-              <input name="cost" value={this.state.cost} onChange={this.handleChange}/><br/>
+                <label>Cost: </label>
+                <input name="cost" value={this.state.cost} onChange={this.handleChange}/><br/>
 
-              <label>Notes: </label>
-              <input name="notes" value={this.state.notes} onChange={this.handleChange}/><br/>
+                <label>Notes: </label>
+                <input name="notes" value={this.state.notes} onChange={this.handleChange}/><br/>
 
-              <button>Submit Change</button>
+                <input type="submit" value="Submit Change"></input>
 
-            </form>
+              </form>
+            </div>
           }
           <Map />
         </div>
