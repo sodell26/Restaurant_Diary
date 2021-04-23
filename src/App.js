@@ -205,24 +205,32 @@ class App extends Component {
     e.preventDefault()
     const url = baseUrl + '/account/signup'
 
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+    if (e.target.password.value !== e.target.confirmPassword.value){
+      alert('passwords do not match')
+      } else {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          username: e.target.username.value,
+          password: e.target.password.value,
+          confirmPassword: e.target.confirmPassword.value
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      if (response.status === 409) {
+          console.log('user already exists')
+          alert("User Already Exists")
       }
-    })
-    // if (response.status === 409) {
-    //     alert("User Already Exists")
-   if (response.status === 201) {
-      console.log('register hit')
+     else if (response.status === 201) {
+        console.log('register hit')
 
-      this.loggingUser(e)
-      //add set state of showLanding to false
-    } 
+        this.loggingUser(e)
+
+      } 
+    }
   }
 
   logOut = async (e) => {

@@ -12,6 +12,9 @@ export default function UserSignup(props) {
           <label htmlFor="password">Password: </label>
           <input type="password" id="password" name="password"></input>
 
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+                  <input type='password' id="confirmPassword" name='confirmPassword'></input>
+
           <Button variant="light" type="submit" value="Sign Up">Create Account</Button>
 
         </form>
