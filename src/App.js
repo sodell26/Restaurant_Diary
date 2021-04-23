@@ -246,30 +246,30 @@ class App extends Component {
 
   render () {
     return(
-
-      <>
-
+      <div>
         <NavBar loggedIn={this.state.loggedIn} loggingUser={this.loggingUser}logOut={this.logOut} register={this.register}/>
+
         {this.state.loggedIn && 
-          <div>
-            <Button variant="info" onClick={e => this.showNewForm(e)}>Add New Review</Button>
-            {this.state.modalNewOpen &&
-              <NewEntry baseUrl={baseUrl} addReview={this.addReview} onClose={this.onClose}/>
-            }
-            <div class="card-container">
+          <div class="flexbox-container">
+            <div>
+              <Button variant="dark" onClick={e => this.showNewForm(e)}>Add New Review</Button>
+                {this.state.modalNewOpen &&
+                   <NewEntry baseUrl={baseUrl} addReview={this.addReview} onClose={this.onClose}/>
+                }
+              <div class="card-container">
                 {this.state.reviewEntries.map(entry => {
                   return (
                     <Card style={{ width: '18rem'}} key={entry._id}>
-                        <Card.Body>
+                      <Card.Body>
                        <Card.Title>{entry.restName}</Card.Title>
                        <Card.Text>{entry.notes}</Card.Text>
                       </Card.Body>
-                      {<ListGroup className="list-group-flush">
+                      <ListGroup className="list-group-flush">
                         <ListGroup.Item>{entry.rating}</ListGroup.Item>
                         <ListGroup.Item>{entry.address}</ListGroup.Item>
                         <ListGroup.Item>{entry.meal}</ListGroup.Item>
                         <ListGroup.Item>{entry.cost}</ListGroup.Item>
-                      </ListGroup>}
+                      </ListGroup>
                       <Card.Body>
                        <Card.Link onClick={()=>this.deleteReview(entry._id)}>X</Card.Link>
                        <Card.Link onClick={()=>this.showEditForm(entry)}>Edit</Card.Link>
@@ -277,10 +277,7 @@ class App extends Component {
                     </Card>
                   )
                 })}
-
-
-          </div>
-
+              </div>
           <br/>
           <br/>
           <br/>
@@ -310,11 +307,17 @@ class App extends Component {
               </form>
             </div>
           }
-          <Map />
-        </div>
+          </div>
+          <div>
+            <Map />
+          </div>
+        }
+
+          </div>
       }
-      
-      </>
+        
+        
+      </div>
 
     )
   }
