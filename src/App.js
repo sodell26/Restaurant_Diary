@@ -331,8 +331,8 @@ class App extends Component {
                           <ListGroup.Item>${entry.cost}</ListGroup.Item>
                         </ListGroup>
                         <Card.Body>
-                         <Card.Link onClick={()=>this.deleteReview(entry._id)}>X</Card.Link>
-                         <Card.Link onClick={()=>this.showEditForm(entry)}>Edit</Card.Link>
+                         <Card.Link className='review-btn' onClick={()=>this.deleteReview(entry._id)}>X</Card.Link>
+                         <Card.Link className='review-btn' onClick={()=>this.showEditForm(entry)}>Edit</Card.Link>
                         </Card.Body>
                       </Card>
                     )
